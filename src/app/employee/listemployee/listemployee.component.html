@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+
+            <h3 class="float-left"> <i class="fa fa-users"></i> Employee List</h3>
+            <a [routerLink]="['/create']" class="btn btn-primary btn-sm float-right">Create Employee</a>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Employee Id</th>
+                    <th scope="col">Employee Name</th>
+                    <th scope="col">Employee Salary</th>
+                    <th scope="col">Employee age</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let employee of employees | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <th>{{employee.id}}</th>
+                    <td>{{employee.employee_name}}</td>
+                    <td>{{employee.employee_salary}}</td>
+                    <td>{{employee.employee_age}}</td>
+                    <td><a routerLink="/view/{{employee.id}}"> <i class="fa fa-pencil"></i> </a></td>
+                    <td><a href="#" (click)="deleteEmployee(employee.id)"><i class="fa fa-times"></i></a></td>
+                </tr>
+                
+                </tbody>
+            </table>
+
+            <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+
+        </div>
+    </div>
+</div>
